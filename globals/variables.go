@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"strings"
 	"fmt"
-	"chat/globals"
+	// "chat/globals"
 	"github.com/spf13/viper"
 )
 
@@ -53,7 +53,7 @@ func LoadMarketModels() MarketModelList {
 
 	var models MarketModelList
 	if err := viper.UnmarshalKey("market", &models); err != nil {
-		globals.Warn(fmt.Sprintf("[market] read config error: %s, use default config", err.Error()))
+		// globals.Warn(fmt.Sprintf("[market] read config error: %s, use default config", err.Error()))
 		models = MarketModelList{}
 	}
 	MarketModels = models
