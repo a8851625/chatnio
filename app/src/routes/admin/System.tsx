@@ -844,7 +844,7 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
     >
       <ParagraphItem>
         <Label>{t("admin.system.searchType")}</Label>
-        <MultiCombobox
+        <Combobox
           value={data.search_type}
           onChange={(value) =>
             dispatch({ type: "update:search.type", value })
