@@ -4,6 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/url"
 	"strings"
+	"fmt"
+	"chat/globals"
 	"github.com/spf13/viper"
 )
 
@@ -40,21 +42,21 @@ var AcceptImageStore bool
 var CloseRegistration bool
 var CloseRelay bool
 
-var MarketModels *MarketModelList
+var MarketModels MarketModelList
 
 
-func LoadMarketModels() *MarketModelList {
+func LoadMarketModels() MarketModelList {
 
-	if MarketModels != nil {
-
-		var models MarketModelList
-		if err := viper.UnmarshalKey("market", &models); err != nil {
-			globals.Warn(fmt.Sprintf("[market] read config error: %s, use default config", err.Error()))
-			models = MarketModelList{}
-		}
-		MarketModels = models
+	if MarketModels != nil{
+		return MarketModels
 	}
-	
+
+	var models MarketModelList
+	if err := viper.UnmarshalKey("market", &models); err != nil {
+		globals.Warn(fmt.Sprintf("[market] read config error: %s, use default config", err.Error()))
+		models = MarketModelList{}
+	}
+	MarketModels = models
 	return  MarketModels
 }
 
@@ -190,7 +192,7 @@ func IsVisionModel(model string) bool {
 
 	for _, m := range LoadMarketModels() {
 		if m.Vision {
-			return m.id
+			return true
 		}
 	}
 	// return in(model, VisionModels) && !in(model, VisionSkipModels)	
