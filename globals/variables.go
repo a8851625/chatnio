@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/url"
 	"strings"
-	"fmt"
+	// "fmt"
 	// "chat/globals"
 	"github.com/spf13/viper"
 )
