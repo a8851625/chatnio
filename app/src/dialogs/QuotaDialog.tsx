@@ -42,7 +42,7 @@ import { ToastAction } from "@/components/ui/toast.tsx";
 import {
   buyLink,
   deeptrainEndpoint,
-  docsEndpoint,
+  // docsEndpoint,
   useDeeptrain,
 } from "@/conf/env.ts";
 import { useRedeem } from "@/api/redeem.ts";

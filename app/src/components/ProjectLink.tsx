@@ -1,5 +1,6 @@
 import { Button } from "./ui/button.tsx";
 // import { useConversationActions, useMessages } from "@/store/chat.ts";
+import { useConversationActions } from "@/store/chat.ts";
 import { MessageSquarePlus } from "lucide-react";
 // import Github from "@/components/ui/icons/Github.tsx";
 // import { openWindow } from "@/utils/device.ts";

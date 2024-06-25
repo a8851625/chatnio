@@ -17,12 +17,13 @@ import {
   regenerateApiKey,
 } from "@/store/api.ts";
 import { Input } from "@/components/ui/input.tsx";
-import { Copy, ExternalLink, Power, RotateCw } from "lucide-react";
+// import { Copy, ExternalLink, Power, RotateCw } from "lucide-react";
+import { Copy, Power, RotateCw } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast.ts";
 import { copyClipboard } from "@/utils/dom.ts";
 import { useEffectAsync } from "@/utils/hook.ts";
 import { selectInit } from "@/store/auth.ts";
-import { docsEndpoint } from "@/conf/env.ts";
+// import { docsEndpoint } from "@/conf/env.ts";
 import {
   AlertDialog,
   AlertDialogCancel,
