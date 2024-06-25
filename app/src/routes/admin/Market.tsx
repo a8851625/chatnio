@@ -667,7 +667,7 @@ function MarketItem({
             checked={model.tool_call}
             onCheckedChange={(state) => {
               dispatch({
-                type: "update-toolcall",
+                type: "update-tool-call",
                 payload: {
                   idx: index,
                   toolcall: state,
