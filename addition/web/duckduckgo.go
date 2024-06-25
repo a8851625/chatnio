@@ -16,7 +16,7 @@ type DDGResponse struct {
 	} `json:"results"`
 }
 
-func formatResponse(data *DDGResponse) string {
+func duckDuckGoResponse(data *DDGResponse) string {
 	res := make([]string, 0)
 	for _, item := range data.Results {
 		if item.Body == "" || item.Href == "" || item.Title == "" {

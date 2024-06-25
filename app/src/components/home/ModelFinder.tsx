@@ -86,12 +86,12 @@ function ModelFinder(props: ModelSelectorProps) {
     const raw = models.find((item) => item.name === model);
     return raw || models[0];
   }, [models, model, supportModels, modelList]);
-
+  // maxElements TODO 最多下拉多少个模型 
   return (
     <SelectGroup
       current={current}
       list={models}
-      maxElements={3}
+      maxElements={5}
       side={props.side}
       classNameMobile={`model-select-group`}
       selectGroupTop={{

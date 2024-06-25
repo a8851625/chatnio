@@ -28,10 +28,14 @@ export type MailState = {
   white_list: whiteList;
 };
 
-export type SearchState = {
+interface SearchState {
+  search_type: string; // 新增字段，用于存储搜索类型
   endpoint: string;
   query: number;
-};
+  engine?: string; // 新增字段，用于存储搜索引擎类型
+  language?: string; // 新增字段，用于存储语言
+}
+
 
 export type SiteState = {
   close_register: boolean;
@@ -151,6 +155,7 @@ export const initialSystemState: SystemProps = {
     },
   },
   search: {
+    search_type: "duckduckgo",
     endpoint: "https://duckduckgo-api.vercel.app",
     query: 5,
   },

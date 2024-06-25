@@ -13,6 +13,8 @@ type MarketModel struct {
 	Description string   `json:"description" mapstructure:"description"`
 	Default     bool     `json:"default" mapstructure:"default"`
 	HighContext bool     `json:"high_context" mapstructure:"high_context"`
+	Vision      bool   	 `json:"vision" mapstructure:"vision"`
+	ToolCall    bool   	 `json:"tool_call" mapstructure:"tool_call"`
 	Avatar      string   `json:"avatar" mapstructure:"avatar"`
 	Tag         ModelTag `json:"tag" mapstructure:"tag"`
 }

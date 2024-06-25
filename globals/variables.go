@@ -4,7 +4,25 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/url"
 	"strings"
+	"github.com/spf13/viper"
 )
+
+
+type MarketModel struct {
+	Id          string   `json:"id" mapstructure:"id" required:"true"`
+	Name        string   `json:"name" mapstructure:"name" required:"true"`
+	Default     bool     `json:"default" mapstructure:"default"`
+	HighContext bool     `json:"high_context" mapstructure:"high_context"`
+	Vision      bool   	 `json:"vision" mapstructure:"vision"`
+	ToolCall    bool   	 `json:"tool_call" mapstructure:"tool_call"`
+}
+
+type MarketModelList []MarketModel
+
+type Market struct {
+	Models MarketModelList `json:"models" mapstructure:"models"`
+}
+
 
 const ChatMaxThread = 5
 const AnonymousMaxThread = 1
@@ -21,6 +39,24 @@ var CacheAcceptedSize int64
 var AcceptImageStore bool
 var CloseRegistration bool
 var CloseRelay bool
+
+var MarketModels *MarketModelList
+
+
+func LoadMarketModels() *MarketModelList {
+
+	if MarketModels != nil {
+
+		var models MarketModelList
+		if err := viper.UnmarshalKey("market", &models); err != nil {
+			globals.Warn(fmt.Sprintf("[market] read config error: %s, use default config", err.Error()))
+			models = MarketModelList{}
+		}
+		MarketModels = models
+	}
+	
+	return  MarketModels
+}
 
 func OriginIsAllowed(uri string) bool {
 	if len(AllowedOrigins) == 0 {
@@ -151,5 +187,14 @@ func IsOpenAIDalleModel(model string) bool {
 }
 
 func IsVisionModel(model string) bool {
-	return in(model, VisionModels) && !in(model, VisionSkipModels)
+
+	
+	for _, m range LoadMarketModels(){
+		if m.Vision {
+			return true
+		}
+	}
+	
+	return false
+	// return in(model, VisionModels) && !in(model, VisionSkipModels)
 }

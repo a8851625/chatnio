@@ -350,12 +350,6 @@ function QuotaDialog() {
                     </a>
                   </Button>
                 )}
-                <Button variant={`outline`} asChild>
-                  <a href={docsEndpoint} target={`_blank`}>
-                    <ExternalLink className={`h-4 w-4 mr-2`} />
-                    {t("buy.learn-more")}
-                  </a>
-                </Button>
               </div>
             </div>
           </DialogDescription>

@@ -830,8 +830,15 @@ function Common({ form, data, dispatch, onChange }: CompProps<CommonState>) {
   );
 }
 
+
+
 function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
   const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
+  const searchTypes = [
+    { value: 'duckduckgo', label: t("admin.system.duckduckgo") },
+    { value: 'searnxg', label: t("admin.system.searnxg") },
+  ]; 
 
   return (
     <Paragraph
@@ -839,6 +846,19 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
       configParagraph={true}
       isCollapsed={true}
     >
+      <ParagraphItem>
+        <Label>{t("admin.system.searchType")}</Label>
+        <MultiCombobox
+          value={data.searchType}
+          onChange={(value) =>
+            dispatch({ type: "update:search.type", value })
+          }
+          list={searchTypes}
+          placeholder={t("admin.system.searchTypePlaceholder", {
+            length: (data.searchType ?? []).length,
+          })}
+        />
+      </ParagraphItem>
       <ParagraphItem>
         <Label>{t("admin.system.searchEndpoint")}</Label>
         <Input
@@ -870,6 +890,29 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
           max={50}
         />
       </ParagraphItem>
+      {data.searchType.includes("searnxg") && (
+        <>
+          <ParagraphItem>
+            <Label>{t("admin.system.searchEngine")}</Label>
+            <Input
+              value={data.engine || ""}
+              onChange={(e) =>
+                dispatch({ type: "update:search.engine", value: e.target.value })
+              }
+            />
+          </ParagraphItem>
+          <ParagraphItem>
+            <Label>{t("admin.system.searchLanguage")}</Label>
+            <Input
+              value={data.language || ""}
+              onChange={(e) =>
+                dispatch({ type: "update:search.language", value: e.target.value })
+              }
+              placeholder={t("admin.system.searchLanguagePlaceholder")}
+            />
+          </ParagraphItem>
+        </>
+      )}
       <ParagraphDescription border>
         {t("admin.system.searchTip")}
       </ParagraphDescription>
@@ -877,8 +920,12 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
         <div className={`grow`} />
         <Button
           size={`sm`}
-          loading={true}
-          onClick={async () => await onChange()}
+          loading={isLoading}
+          onClick={async () => {
+            setIsLoading(true);
+            await onChange();
+            setIsLoading(false);
+          }}
         >
           {t("admin.system.save")}
         </Button>

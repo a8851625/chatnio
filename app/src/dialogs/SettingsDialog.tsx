@@ -373,7 +373,7 @@ function SettingsDialog() {
                 </p>
                 <a
                   className={`flex flex-row items-center`}
-                  href={`https://github.com/Deeptrain-Community/chatnio`}
+                  // href={`https://github.com/Deeptrain-Community/chatnio`}
                 >
                   <Github
                     className={`inline-block h-4 w-4 mr-1 translate-y-[1px]`}

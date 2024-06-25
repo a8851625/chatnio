@@ -64,8 +64,10 @@ type mailState struct {
 }
 
 type searchState struct {
-	Endpoint string `json:"endpoint" mapstructure:"endpoint"`
-	Query    int    `json:"query" mapstructure:"query"`
+	Endpoint 	string `json:"endpoint" mapstructure:"endpoint"`
+	Query    	int    `json:"query" mapstructure:"query"`
+	SearchType 	string `json:"search_type" mapstructure:"search_type"`
+	Engines 	string `json:"engines" mapstructure:"engines"`
 }
 
 type commonState struct {
@@ -219,6 +221,38 @@ func (c *SystemConfig) SendVerifyMail(email string, code string) error {
 		fmt.Sprintf("%s | OTP Verification", c.GetAppName()),
 	)
 }
+
+func (c *SystemConfig) GetSearchType() string {
+
+	types := []string{"duckduckgo", "searxng"}
+	t := c.Search.SearchType
+	for _, str := range types {
+		if t == str {
+		return t
+	}
+
+	return "duckduckgo"
+}
+
+func (c *SystemConfig) GetSearcEngines() string {
+
+	engines := []string{"google", "bing", "yahoo", "naver", "duckduckgo"}
+	parts := strings.Split(c.system.Engines, ",")
+	var finalEngines []string
+	for _, str := range parts {
+		for _, e := range engines{
+			str != e {
+				continue
+			}
+		}
+		finalEngines = append(finalEngines, str)
+	}
+
+	return strings.Join(finalEngines, ",")
+}
+
+
+
 
 func (c *SystemConfig) GetSearchEndpoint() string {
 	if len(c.Search.Endpoint) == 0 {

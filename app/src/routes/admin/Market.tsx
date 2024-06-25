@@ -805,7 +805,7 @@ function SyncDialog({
         open={open}
         setOpen={setOpen}
         type={popupTypes.Text}
-        defaultValue={"https://api.chatnio.net"}
+        defaultValue={"https://api.openai.com"}
         onSubmit={async (endpoint: string) => {
           const raw = getV1Path("/v1/market", { endpoint });
           const resp = await getApiMarket({ endpoint });
