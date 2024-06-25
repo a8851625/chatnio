@@ -130,6 +130,8 @@ export async function getFilledApiMarket(
     free: false,
     auth: true,
     high_context: false,
+    vision: false,
+    tool_call: false,
     price: {
       type: nonBilling,
       anonymous: false,
