@@ -845,13 +845,13 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
       <ParagraphItem>
         <Label>{t("admin.system.searchType")}</Label>
         <MultiCombobox
-          value={data.searchType}
+          value={data.search_type}
           onChange={(value) =>
             dispatch({ type: "update:search.type", value })
           }
           list={searchTypes}
           placeholder={t("admin.system.searchTypePlaceholder", {
-            length: (data.searchType ?? []).length,
+            length: (data.search_type ?? []).length,
           })}
         />
       </ParagraphItem>
@@ -886,7 +886,7 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
           max={50}
         />
       </ParagraphItem>
-      {data.searchType.includes("searnxg") && (
+      {data.search_type.includes("searnxg") && (
         <>
           <ParagraphItem>
             <Label>{t("admin.system.searchEngine")}</Label>
