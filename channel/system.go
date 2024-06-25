@@ -223,25 +223,26 @@ func (c *SystemConfig) SendVerifyMail(email string, code string) error {
 }
 
 func (c *SystemConfig) GetSearchType() string {
-
+	
 	types := []string{"duckduckgo", "searxng"}
 	t := c.Search.SearchType
 	for _, str := range types {
 		if t == str {
-		return t
+			return t
+		}
 	}
 
 	return "duckduckgo"
 }
 
-func (c *SystemConfig) GetSearcEngines() string {
+func (c *SystemConfig) GetSearchEngines() string {
 
 	engines := []string{"google", "bing", "yahoo", "naver", "duckduckgo"}
-	parts := strings.Split(c.system.Engines, ",")
+	parts := strings.Split(c.Search.Engines, ",")
 	var finalEngines []string
 	for _, str := range parts {
-		for _, e := range engines{
-			str != e {
+		for _, e := range engines {
+			if str != e {
 				continue
 			}
 		}

@@ -38,21 +38,22 @@ func SearchReverse(q string) string {
 func SearchWebResult(q string) string {
 
 	t := channel.SystemInstance.GetSearchType()
+	var content = ""
 	if t== "searxng" {
 		res, err := CallSearxngAPI(q)
 		if err != nil {
 			globals.Warn(fmt.Sprintf("[web] failed to get search result: %s (query: %s)", err.Error(), q))
 			return ""
 		}
-		count := channel.SystemInstance.GetSearchQuery
-		content := searxngResponse(res, count)
+		c := channel.SystemInstance.GetSearchQuery()
+		content = searxngResponse(res, c)
 	}else{
 		res, err := CallDuckDuckGoAPI(q)
 		if err != nil {
 			globals.Warn(fmt.Sprintf("[web] failed to get search result: %s (query: %s)", err.Error(), q))
 			return ""
 		}
-		content := duckDuckGoResponse(res)
+		content = duckDuckGoResponse(res)
 	}
 
 	globals.Debug(fmt.Sprintf("[web] search result: %s (query: %s)", utils.Extract(content, 50, "..."), q))

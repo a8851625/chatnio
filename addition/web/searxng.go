@@ -9,13 +9,6 @@ import (
 )
 
 type SearxngResponse struct {
-	Results []struct {
-		Body  string `json:"body"`
-		Href  string `json:"href"`
-		Title string `json:"title"`
-	} `json:"results"`
-}
-type SearxngResponse struct {
 	Query           string `json:"query"`
 	NumberOfResults int    `json:"number_of_results"`
 	Results         []struct {
@@ -46,7 +39,7 @@ func searxngResponse(data *SearxngResponse, queryNumber int) string {
 			break
 		}
 		count += 1
-		res = append(res, fmt.Sprintf("%s (%s): %s", item.Title, item.Href, item.Content))
+		res = append(res, fmt.Sprintf("%s (%s): %s", item.Title, item.Url, item.Content))
 	}
 
 	return strings.Join(res, "\n")
@@ -54,11 +47,11 @@ func searxngResponse(data *SearxngResponse, queryNumber int) string {
 
 func CallSearxngAPI(query string) (*SearxngResponse, error) {
 	data, err := utils.Get(fmt.Sprintf(
-		"%s/search?q=%s&categories=%s&format=json",
+		"%s/search?q=%s&categories=%s&format=json&%s",
 		channel.SystemInstance.GetSearchEndpoint(),
 		url.QueryEscape(query),
-		channel.SystemInstance.GetEngines(),
-		channel.SystemInstance.GetLanguage(),
+		"page",
+		channel.SystemInstance.GetSearchEngines(),
 	), nil)
 
 	if err != nil {
