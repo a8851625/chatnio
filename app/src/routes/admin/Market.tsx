@@ -193,6 +193,24 @@ function reducer(state: MarketForm, action: any): MarketForm {
           return model;
         }),
       ];
+    case "update-vision":
+      return [
+        ...state.map((model, idx) => {
+          if (idx === action.payload.idx) {
+            return { ...model, vision: action.payload.vision };
+          }
+          return model;
+        }),
+      ];
+    case "update-tool-call":
+      return [
+        ...state.map((model, idx) => {
+          if (idx === action.payload.idx) {
+            return { ...model, tool_call: action.payload.tool_call };
+          }
+          return model;
+        }),
+      ];
     case "update-default":
       return [
         ...state.map((model, idx) => {
@@ -608,6 +626,47 @@ function MarketItem({
             }}
           />
         </div>
+
+        <div className={`market-row`}>
+          <span>
+            {t("admin.market.model-vision")}
+            <Tips content={t("admin.market.model-vision-tip")} />
+          </span>
+          <Switch
+            className={`ml-auto`}
+            checked={model.vision}
+            onCheckedChange={(state) => {
+              dispatch({
+                type: "update-vision",
+                payload: {
+                  idx: index,
+                  vision: state,
+                },
+              });
+            }}
+          />
+        </div>
+
+        <div className={`market-row`}>
+          <span>
+            {t("admin.market.model-tool-call")}
+            <Tips content={t("admin.market.model-tool-call-tip")} />
+          </span>
+          <Switch
+            className={`ml-auto`}
+            checked={model.tool_call}
+            onCheckedChange={(state) => {
+              dispatch({
+                type: "update-toolcall",
+                payload: {
+                  idx: index,
+                  toolcall: state,
+                },
+              });
+            }}
+        />
+        </div>
+                  
         <div className={`market-row`}>
           <span>
             {t("admin.market.model-is-default")}

@@ -40,6 +40,8 @@ export type Model = {
   auth: boolean;
   default: boolean;
   high_context: boolean;
+  vision: boolean;
+  tool_call: boolean;
   avatar: string;
   tag?: string[];
 
