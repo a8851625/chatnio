@@ -188,13 +188,11 @@ func IsOpenAIDalleModel(model string) bool {
 
 func IsVisionModel(model string) bool {
 
-	
-	for _, m range LoadMarketModels(){
+	for _, m := range LoadMarketModels() {
 		if m.Vision {
-			return true
+			return m.id
 		}
 	}
-	
+	// return in(model, VisionModels) && !in(model, VisionSkipModels)	
 	return false
-	// return in(model, VisionModels) && !in(model, VisionSkipModels)
 }
