@@ -57,6 +57,7 @@ import Tips from "@/components/Tips.tsx";
 import { cn } from "@/components/ui/lib/utils.ts";
 import { Switch } from "@/components/ui/switch.tsx";
 import { MultiCombobox } from "@/components/ui/multi-combobox.tsx";
+import { Combobox } from "@/components/ui/combo-box.tsx";
 import { allGroups } from "@/utils/groups.ts";
 import { useChannelModels } from "@/admin/hook.tsx";
 import { useSelector } from "react-redux";
@@ -846,8 +847,8 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
         <Label>{t("admin.system.searchType")}</Label>
         <Combobox
           value={data.search_type}
-          onChange={(value) =>
-            dispatch({ type: "update:search.type", value })
+          onChange={(value: string) =>
+            dispatch({ type: "update:search_type", value })
           }
           list={searchTypes}
           placeholder={t("admin.system.searchTypePlaceholder", {
