@@ -844,7 +844,13 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
       isCollapsed={true}
     >
       <ParagraphItem>
-        <Label>{t("admin.system.searchType")}</Label>
+        <Label>
+          {t("admin.system.searchType")}
+          <Tips
+            className={`inline-block`}
+            content={t("admin.system.searchTypeTip")}
+          />
+        </Label>
         <Combobox
           value={data.search_type}
           onChange={(value: string) =>
@@ -890,22 +896,18 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
       {data.search_type.includes("searnxg") && (
         <>
           <ParagraphItem>
-            <Label>{t("admin.system.searchEngine")}</Label>
-            <Input
-              value={data.engine || ""}
-              onChange={(e) =>
-                dispatch({ type: "update:search.engine", value: e.target.value })
-              }
+            <Label>
+              {t("admin.system.searchEngines")}
+            <Tips
+              className={`inline-block`}
+              content={t("admin.system.searchEnginesTip")}
             />
-          </ParagraphItem>
-          <ParagraphItem>
-            <Label>{t("admin.system.searchLanguage")}</Label>
+            </Label>
             <Input
-              value={data.language || ""}
+              value={data.engines || ""}
               onChange={(e) =>
-                dispatch({ type: "update:search.language", value: e.target.value })
+                dispatch({ type: "update:search.engines", value: e.target.value })
               }
-              placeholder={t("admin.system.searchLanguagePlaceholder")}
             />
           </ParagraphItem>
         </>

@@ -32,7 +32,7 @@ export type SearchState = {
   search_type: string; // 新增字段，用于存储搜索类型
   endpoint: string;
   query: number;
-  engine?: string; // 新增字段，用于存储搜索引擎类型
+  engines?: string; // 新增字段，用于存储搜索引擎类型
   language?: string; // 新增字段，用于存储语言
 }
 
