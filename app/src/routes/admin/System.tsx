@@ -857,9 +857,7 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
             dispatch({ type: "update:search_type", value })
           }
           list={searchTypes}
-          placeholder={t("admin.system.searchTypePlaceholder", {
-            length: (data.search_type ?? []).length,
-          })}
+          placeholder={ data.search_type ? data.search_type : t("admin.system.searchTypePlaceholder")}
         />
       </ParagraphItem>
       <ParagraphItem>

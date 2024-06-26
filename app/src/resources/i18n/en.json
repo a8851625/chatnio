@@ -521,6 +521,8 @@
       "searchEngines": "Search Engines",
       "searchEnginesTip": "Only for Searxng, use `,` split, like: bing,yahoo,google,duckduckgo",
       "searchType": "Search Type",
+      "searchTypeTip": "duckduckgo or searxng",
+      "searchTypePlaceholder": "select search type",
       "searchQuery": "Max Search Results",
       "searchTip": "DuckDuckGo network search access point, if not filled in, you will not be able to use the network function normally.\nDuckDuckGo API Project Build: [duckduckgo-api] (https://github.com/binjie09/duckduckgo-api)",
       "mailFrom": "Sender",
