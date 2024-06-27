@@ -57,7 +57,6 @@ import Tips from "@/components/Tips.tsx";
 import { cn } from "@/components/ui/lib/utils.ts";
 import { Switch } from "@/components/ui/switch.tsx";
 import { MultiCombobox } from "@/components/ui/multi-combobox.tsx";
-import { Combobox } from "@/components/ui/combo-box.tsx";
 import { allGroups } from "@/utils/groups.ts";
 import { useChannelModels } from "@/admin/hook.tsx";
 import { useSelector } from "react-redux";
@@ -845,20 +844,32 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
     >
       <ParagraphItem>
         <Label>
-          {t("admin.system.searchType")}
+          <Require /> {t("admin.system.searchType")}
           <Tips
             className={`inline-block`}
             content={t("admin.system.searchTypeTip")}
           />
         </Label>
-        <Combobox
-          value={data.search_type}
-          onChange={(value: string) =>
-            dispatch({ type: "update:search_type", value })
-          }
-          list={searchTypes}
-          placeholder={ data.search_type ? data.search_type : t("admin.system.searchTypePlaceholder")}
-        />
+        <Select
+          value={data.search_type ? data.search_type : "duckduckgo"}
+          onValueChange={(value: string) => {
+            dispatch({
+              type: "update:search_type",
+              value: value,
+            });
+          }}
+        >
+          <SelectTrigger className={`select`}>
+            <SelectValue
+              placeholder={data.search_type ? data.search_type : t("admin.system.searchTypePlaceholder")}
+            />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="duckduckgo">duckduckgo</SelectItem>
+            <SelectItem value="searnxg">searnxg</SelectItem>
+          </SelectContent>
+        </Select>
+
       </ParagraphItem>
       <ParagraphItem>
         <Label>{t("admin.system.searchEndpoint")}</Label>
