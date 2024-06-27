@@ -11,6 +11,7 @@ import (
 
 func formatMessages(props *adaptercommon.ChatProps) interface{} {
 	if globals.IsVisionModel(props.Model) {
+		var imageDetail string = "auto"
 		return utils.Each[globals.Message, Message](props.Message, func(message globals.Message) Message {
 			if message.Role == globals.User {
 				content, urls := utils.ExtractImages(message.Content, true)
@@ -24,7 +25,7 @@ func formatMessages(props *adaptercommon.ChatProps) interface{} {
 					return &MessageContent{
 						Type: "image_url",
 						ImageUrl: &ImageUrl{
-							"detail": "auto",
+							Detail: &imageDetail,
 							Url: url,
 						},
 					}
