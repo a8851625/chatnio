@@ -850,10 +850,11 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
           />
         </Label>
         <Select
-          value={data.search_type ? data.search_type : "duckduckgo"}
+          value={data.search_type}
           onValueChange={(value: string) => {
+            console.log(value)
             dispatch({
-              type: "update:search_type",
+              type: "update:search.search_type",
               value: value,
             });
           }}
