@@ -835,7 +835,6 @@ function Common({ form, data, dispatch, onChange }: CompProps<CommonState>) {
 function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
-  const searchTypes = [ 'duckduckgo' , 'searnxg']
   return (
     <Paragraph
       title={t("admin.system.search")}
