@@ -866,7 +866,7 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="duckduckgo">duckduckgo</SelectItem>
-            <SelectItem value="searnxg">searnxg</SelectItem>
+            <SelectItem value="searxng">searxng</SelectItem>
           </SelectContent>
         </Select>
 
@@ -902,7 +902,7 @@ function Search({ data, dispatch, onChange }: CompProps<SearchState>) {
           max={50}
         />
       </ParagraphItem>
-      {data.search_type.includes("searnxg") && (
+      {data.search_type.includes("searxng") && (
         <>
           <ParagraphItem>
             <Label>

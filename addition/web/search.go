@@ -38,6 +38,8 @@ func SearchReverse(q string) string {
 func SearchWebResult(q string) string {
 
 	t := channel.SystemInstance.GetSearchType()
+	globals.Debug(fmt.Sprintf("[web] search type : %s (query: %s)", t, q))
+
 	var content = ""
 	if t== "searxng" {
 		res, err := CallSearxngAPI(q)
