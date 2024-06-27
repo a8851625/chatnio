@@ -24,6 +24,7 @@ func formatMessages(props *adaptercommon.ChatProps) interface{} {
 					return &MessageContent{
 						Type: "image_url",
 						ImageUrl: &ImageUrl{
+							"detail": "auto",
 							Url: url,
 						},
 					}
