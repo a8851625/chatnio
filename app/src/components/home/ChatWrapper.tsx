@@ -26,7 +26,7 @@ import {
   MarketAction,
   MaskAction,
   SettingsAction,
-  WebAction,
+  // WebAction,
 } from "@/components/home/assemblies/ChatAction.tsx";
 import ChatSpace from "@/components/home/ChatSpace.tsx";
 import ActionButton from "@/components/home/assemblies/ActionButton.tsx";
@@ -174,7 +174,7 @@ function ChatWrapper() {
               setVisibility={setVisibility}
               target={instance}
             />
-            <WebAction visible={!visible} />
+            {/* <WebAction visible={!visible} /> */}
             <FileAction files={files} dispatch={fileDispatch} />
             <EditorAction value={input} onChange={setInput} />
             <MaskAction />

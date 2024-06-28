@@ -317,7 +317,8 @@ func GetMessage(data []byte) (string, error) {
 
 func (c *Conversation) ApplyParam(form *FormMessage) {
 	c.SetModel(form.Model)
-	c.SetEnableWeb(form.Web)
+	// c.SetEnableWeb(form.Web) TODO 吊用没有
+	c.SetEnableWeb(false)
 	c.SetContextLength(form.Context, form.IgnoreContext)
 
 	c.SetMaxTokens(form.MaxTokens)
